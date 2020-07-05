@@ -40,6 +40,7 @@ public class ProxyHandler implements Handler<Buffer> {
                 replay(Reply.COMMAND_NOT_SUPPORTED);
                 break;
             case UNKNOWN:
+            default:
                 logger.warn("Unknown Command");
                 replay(Reply.COMMAND_NOT_SUPPORTED);
                 break;
@@ -51,7 +52,7 @@ public class ProxyHandler implements Handler<Buffer> {
         socket.write(socksReply.toBuffer(), i -> logger.info(socksReply.toString()));
     }
 
-    void processConnect(SocksRequest request) {
+    private void processConnect(SocksRequest request) {
         netClient.connect(request.port, request.addr, result -> {
             if (result.succeeded()) {
                 NetSocket clientSocket = result.result();

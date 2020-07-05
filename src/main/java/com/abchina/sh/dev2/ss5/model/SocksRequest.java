@@ -42,8 +42,6 @@ public class SocksRequest {
         rsv = buffer.getByte(2);
         atyp =  AddressType.parseValue(buffer.getByte(3));
         switch (atyp) {
-            case UNKNOWN:
-                logger.info("UnKonwn address type: {} buffer layout: {}", buffer.getByte(3), Arrays.toString(buffer.getBytes()));
             case IPV4:
                 getAddress(buffer.getBytes(4, 8));
                 port = buffer.getByte(8) << 8 | buffer.getByte(9) & 0x00FF;
@@ -57,6 +55,9 @@ public class SocksRequest {
                 getAddress(buffer.getBytes(5, 5 + length));
                 port = buffer.getByte(5 + length) << 8 | buffer.getByte(6 + length) & 0x00FF;
                 break;
+            case UNKNOWN:
+            default:
+                logger.info("UnKonwn address type: {} buffer layout: {}", buffer.getByte(3), Arrays.toString(buffer.getBytes()));
         }
     }
 

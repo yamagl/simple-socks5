@@ -11,7 +11,7 @@ class ProxyHandlerTest {
     @Test
     void getAddress() {
         byte[] bytes = new byte[] {106, 11, 47, 19};
-        System.out.println(new StringJoiner(".")
+        assertEquals("106.11.47.19", new StringJoiner(".")
                 .add(String.valueOf((bytes[0] & 0x00FF)))
                 .add(String.valueOf((bytes[1] & 0x00FF)))
                 .add(String.valueOf((bytes[2] & 0x00FF)))
