@@ -10,6 +10,7 @@
 
     <properties>
         <logger.dir>${project.build.directory}</logger.dir>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
 
